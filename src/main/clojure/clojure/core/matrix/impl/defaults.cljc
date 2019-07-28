@@ -815,7 +815,7 @@
       (loop [i (long 0)
              pairs (seq pairs)]
         (when (< i n)
-          (aset dest (first (first pairs)) (Long/valueOf i))
+          (aset dest (first (first pairs)) (#?(:clj Long/valueOf :cljs js/parseInt) i))
           (recur (inc i)
                  (next pairs))))
       (vec dest))))
@@ -1997,7 +1997,7 @@
   #?(:clj Object :cljs object)
     (reshape-view [m shape]
       (if (mp/is-mutable? m)
-        (TODO "reshape-view not supported on mutable array of type: " (class m))
+        (TODO "reshape-view not supported on mutable array of type: " (#?(:clj class :cljs type) m))
         (mp/reshape m shape))))
 
 (extend-protocol mp/PCoercion
@@ -2097,7 +2097,6 @@
       (mp/element-map! m relu-fn)))
 
 
-#?(:clj  (do
 
 (defmacro def-PMathsFunctions
   [clj?]
@@ -2146,7 +2145,7 @@
                `~mops/maths-ops)
       ])
     ))
-))
+
 
 (def-PMathsFunctions #?(:clj true :cljs false))
 (def-PMathsFunctionsMutable #?(:clj true :cljs false))

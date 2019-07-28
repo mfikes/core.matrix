@@ -43,7 +43,7 @@
                              ]
               :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
               :plugins [[lein-figwheel "0.5.13"]
-                        [lein-doo "0.1.7"]
+                        [lein-doo "0.1.11"]
                         [lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]
                         ]
 

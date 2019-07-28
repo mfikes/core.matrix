@@ -1947,7 +1947,6 @@ elements not-equal to the argument are 0.
     (mp/assign! m (pow m a))
     m))
 
-#?(:clj (do
 
 (defmacro def-mat-mop
   "Define a mathematical operator using core.matrix.protocols so it works over arrays and values."
@@ -1969,7 +1968,6 @@ elements not-equal to the argument are 0.
   `(do
      ~@(for [[name# func#] mops/maths-ops]
          `(def-mat-mop ~name# ~func#))))
-))
 
 ;; create all unary maths operators
 (def-mat-mops)

@@ -204,7 +204,6 @@
 ;;
 ;; wraps an N-dimensional subset or broadcast of an array
 ;; supports aritrary permutations of dimensions and indexes
-#?(:clj
 (defmacro set-source-index
   "Sets up an index into the source vector for dimension i at position val"
   [ix i val]
@@ -213,7 +212,6 @@
            tdim# (aget ~'dim-map ~isym)]
        (when (>= tdim# 0)
          (aset ~ix tdim# (aget ~(vary-meta `(aget ~'index-maps ~isym) assoc :tag 'longs) ~val))))))
-)
 
 (deftype NDWrapper
   [array ;; source array (any valid core.matrix matrix)

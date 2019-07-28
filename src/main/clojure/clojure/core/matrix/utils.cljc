@@ -5,7 +5,7 @@
             (:import [java.util Arrays]
                      [clojure.lang IPersistentVector])])
   (#?(:clj :require :cljs :require-macros)
-           [clojure.core.matrix.macros :refer [TODO is-long-array?]]))
+           [clojure.core.matrix.macros :refer [TODO #?@(:cljs [doseq-indexed]) is-long-array?]]))
 
 ;; Some of these are copies of methods from the library
 ;;   https://github.com/mikera/clojure-utils
@@ -28,6 +28,7 @@
                 :cljs js/Error.)
                      (str ~@vals)))))
 
+#?(:clj
 (defmacro doseq-indexed
   "loops over a set of values, binding index-sym to the 0-based index of each value"
   ([[val-sym values index-sym] & code]
@@ -38,6 +39,7 @@
              ~@code
              (recur (next vals#) (inc ~index-sym)))
        nil))))
+)
 
 ; this duplicates clojure.core.matrix.utils.macros
 ;; however needed to allow some legacy code to run

@@ -72,6 +72,10 @@ To build the Clojurescript unit tests you can run:
 
 and then load resources/public/test.html in a browser to run the tests.
 
+To test under self-hosted ClojureScript:
+
+     lein with-profile +cljs doo planck test once
+
 ### Status
 
 `core.matrix` is fully functional and usable in production applications. As well as supporting

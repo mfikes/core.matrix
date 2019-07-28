@@ -52,7 +52,7 @@
     (or (mp/construct-matrix impl data)
         (try 
           (mp/construct-matrix mi/*matrix-implementation* data)
-          (catch ClassCastException t nil)) ;; fix for element type not handled
+          (catch #?(:clj ClassCastException :cljs :default) t nil)) ;; fix for element type not handled
         (mp/construct-matrix [] data))))
 
 (defn mapmatrix

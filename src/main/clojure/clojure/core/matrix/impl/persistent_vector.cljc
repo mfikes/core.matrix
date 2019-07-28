@@ -50,13 +50,11 @@
   ([v]
     (mapv persistent-vector-coerce v)))
 
-#?(:clj
 (defmacro vector-1d?
   "Utility macro to determine if a persistent vector represents a 1D vector"
   [pv]
   `(let [pv# ^IPersistentVector ~pv]
      (or (== 0 (count pv#)) (== 0 (long (mp/dimensionality (nth pv# 0)))))))
-)
 
 (defn- mapv-identity-check
   "Maps a function over a persistent vector, only modifying the vector if the function
